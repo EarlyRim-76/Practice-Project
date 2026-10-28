@@ -1,5 +1,8 @@
 name: Listen Issues Meta Data
-on: issues
+on:
+  push:
+  workflow_dispatch:
+  issues:
 jobs:
   print-metadata:
     runs-on: ubuntu-latest
