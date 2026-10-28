@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
-        uses: actions/checkoutv@7
+        uses: actions/checkout@v7
       - name: Install Dependencies
         run: npm ci
       - name: Lint Code
