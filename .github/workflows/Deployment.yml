@@ -1,0 +1,35 @@
+name: Deployment
+on: push
+jobs:
+  lint-project:
+    runs-on: ubuntu-latest
+      - name: Run lint
+        uses: actions/checkout@v7
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run lint
+        run: npm run lint
+      - name: Display status
+        run : echo "lint successfully run!"
+  test-project:
+    needs: lint-project
+    runs-on: ubuntu-latest
+      - name: Run test
+        uses: actions/checkout@7
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run testing
+        run: npm run test
+      - name: Display status
+        run : echo "Test successfully run!"
+  build-project:
+    needs: test-project
+    runs-on: ubuntu-latest
+      - name: Run build
+        uses: actions/checkout@7
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run build
+        run: npm run build
+      - name: Display status
+        run : echo "Build successfully run!"

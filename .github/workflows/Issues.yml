@@ -1,0 +1,16 @@
+name: Listen Issues Meta Data
+on: issues
+jobs:
+  print-metadata:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout Repo
+        uses: actions/checkout@v7
+      
+      - name : Display metadata
+        run: |
+          echo "Event name: ${{ github.event_name }}"
+          echo "Actor: ${{ github.actor }}"
+          echo "SHA: ${{ github.sha }}"
+          echo "Ref: ${{ github.ref }}"
+
