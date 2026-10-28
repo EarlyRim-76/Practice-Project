@@ -3,6 +3,7 @@ on: push
 jobs:
   lint-project:
     runs-on: ubuntu-latest
+    steps:
       - name: Run lint
         uses: actions/checkout@v7
       - name: Install Dependencies
@@ -14,6 +15,7 @@ jobs:
   test-project:
     needs: lint-project
     runs-on: ubuntu-latest
+    steps:
       - name: Run test
         uses: actions/checkout@7
       - name: Install Dependencies
@@ -25,6 +27,7 @@ jobs:
   build-project:
     needs: test-project
     runs-on: ubuntu-latest
+    steps:
       - name: Run build
         uses: actions/checkout@7
       - name: Install Dependencies
