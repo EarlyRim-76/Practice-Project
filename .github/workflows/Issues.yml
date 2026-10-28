@@ -1,8 +1,8 @@
 name: Listen Issues Meta Data
 on:
-  push:
+  #push: #commented push and issues to trigger the workflow manaully
   workflow_dispatch:
-  issues:
+  #issues:
 jobs:
   print-metadata:
     runs-on: ubuntu-latest

@@ -1,5 +1,5 @@
 name: Deployment
-on: push
+on: workflow_dispatch # remove push to trigger workflow manually
 jobs:
   lint-project:
     runs-on: ubuntu-latest

@@ -1,0 +1,33 @@
+name: Events Demo 1
+on: 
+  # pull_request:
+  #   types:
+  #     - opened
+  #   branches:
+  #     - main #only covers main
+  #     - 'dev-*' # adding -* will trigger on branch that has a dev in its name.
+  #     - 'feat/**' # adding /** will trigger on branch that has feat/ directory in its first name.
+  workflow_dispatch: #Commented the other event to trigger workflow manually
+  # push: 
+  #   branches:
+  #     - main #only covers main
+  #     - 'dev-*' # adding -* will trigger on branch that has a dev in its name.
+  #     - 'feat/**' # adding /** will trigger on branch that has feat/ directory in its first name.
+  #   paths: # this workflow only triggers if there is changes in this particular path.
+  #     -'.github/workflows/*'
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output event data
+        run: echo "${{ toJSON(github.event)}}"
+      - name : Get Code
+        run: actions/checkout@v7
+      - name: Install Dependencies
+        run: npm ci
+      - name: Test Code
+        run: npm run test
+      - name: Build Once
+        run: npm run build
+      - name: Deploy Project
+        run: echo "Deploying..."
