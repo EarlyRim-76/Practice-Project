@@ -15,14 +15,11 @@ jobs:
         run: npm run lint
       - name: Test Code
         run: npm run test
-      - name: Upload Artifacts #Uploading and creating artifacts
-        uses: actions/upload-artifact@v7
-        with: # you can download this artifacts
-          name: my-artifacts
-          path: artifacts 
   build: 
     needs: test
     runs-on: ubuntu-latest
+    outputs : # define output of your choice
+      script-file: ${{ steps.publish.outputs.script-file}} #should be same name with the artifacts 
     steps:
       - name: Get Code
         uses: actions/checkout@v7
@@ -30,11 +27,25 @@ jobs:
         run: npm ci
       - name: Build Website
         run: npm run build
+      - name: Publish md filename
+        id: publish #access data on steps.publish
+        run: find artifacts/*.md -type f -execdir echo 'script-file=publish name' >> $GITHUB_OUTPUT ';'
+      - name: Upload Artifacts #Uploading and creating artifacts
+        uses: actions/upload-artifact@v7
+        with: # you can download this artifacts
+          name: my-artifacts
+          path: artifacts 
   deploy:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Download Artifacts
         uses: actions/download-artifact@v7
+        with: #identify the artifact to download
+          name: my-artifacts
+      - name: Output Contents
+        run: ls
+      - name: Output filename
+        run: echo "${{ needs.build.outputs.script-file }}"
       - name: Deploy
         run: echo "Deploying..."
