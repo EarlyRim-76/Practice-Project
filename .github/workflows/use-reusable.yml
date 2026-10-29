@@ -72,8 +72,8 @@ jobs:
     uses: ./.github/workflow/reusable.yml #Adding directory to call another workflow from the directory
     with: # passing data to other workflow
       artifact-name: dist-files
-    secret: # obtainign secret
-      some-secret: ${{ secrets.some-secret }}
+    # secret: # obtainign secret commented but this is the way to transfer input
+    #   some-secret: ${{ secrets.some-secret }}
   print-deploy-result:
     needs: deploy
     runs-on: ubuntu-latest

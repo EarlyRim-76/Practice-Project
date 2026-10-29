@@ -12,9 +12,9 @@ on:
       result: 
         description: The result of the deployment operation
         value: ${{ jobs.deploy.outputs.outcome }} #value of outputs
-    secrets:  #adding secrets
-      some-secret: # name of secret
-        required: false
+    # secrets:  #adding secrets, commented but this is the way to transfer secret
+    #   some-secret: # name of secret
+    #     required: false
 jobs:
   deploy:
     outputs:
