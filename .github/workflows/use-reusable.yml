@@ -69,7 +69,7 @@ jobs:
           path: dist
   deploy:
     needs: build
-    uses: .github/workflow/reusable.yml #Adding directory to call another workflow from the directory
+    uses: ./.github/workflows/reusable.yml #Adding directory to call another workflow from the directory
     with: # passing data to other workflow
       artifact-name: dist-files
     # secret: # obtainign secret commented but this is the way to transfer input
