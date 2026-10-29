@@ -15,7 +15,6 @@ jobs:
       MONGODB_USERNAME:  # ${{ secrets.MONGODB_USERNAME}} # This secret will be injected from the secret settings
       MONGODB_PASSWORD:  # ${{ secrets.MONGODB_PASSWORD}}
       PORT: 8080 #Any port will do
-    environment: testing
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
